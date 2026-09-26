@@ -14,6 +14,12 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "**.r2.dev" },
     ],
   },
+  async redirects() {
+    return [
+      // domínio sem www → www (um endereço canônico só)
+      { source: "/:path*", has: [{ type: "host", value: "jearomas.com.br" }], destination: "https://www.jearomas.com.br/:path*", permanent: true },
+    ];
+  },
   async rewrites() {
     return [
       // IndexNow: /<chave>.txt → verificação dinâmica com a chave do CMS (arquivos reais vêm antes)
